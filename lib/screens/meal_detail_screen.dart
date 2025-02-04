@@ -44,7 +44,7 @@ class MealDetailScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(selectedMeal.title),
       ),
-      body: Column(
+      body: ListView(
         children: <Widget>[
           Container(
             height: 250,
@@ -57,20 +57,26 @@ class MealDetailScreen extends StatelessWidget {
           ),
           Text(
             'Ingredients',
+            textAlign: TextAlign.center,
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
           ),
           list(
             ListView.builder(
               itemCount: selectedMeal.ingredients.length,
-              itemBuilder: (context, index) => Card(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5)),
-                color: Theme.of(context).colorScheme.secondary,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 1.5),
-                  child: Text(
-                    selectedMeal.ingredients[index],
-                    textAlign: TextAlign.center,
+              itemBuilder: (context, index) => SizedBox(
+                height: 37,
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5)),
+                  color: Theme.of(context).colorScheme.secondary,
+                  child: Container(
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.symmetric(vertical: 1.5),
+                    child: Text(
+                      selectedMeal.ingredients[index],
+                      style: TextStyle(fontSize: 15),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ),
               ),
@@ -78,7 +84,11 @@ class MealDetailScreen extends StatelessWidget {
           ),
           Text(
             'Steps',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+            ),
           ),
           list(ListView.builder(
             itemBuilder: (ctx, indx) => Column(
